@@ -71,7 +71,7 @@ export default function Home() {
                 <Paper
                   className="p-4 flex flex-col items-center justify-between" // Added justify-between
                   elevation={3}
-                  style={{ width: "250px", height: "250px", textAlign: "center" }}
+                  style={{ width: "150px", height: "150px", textAlign: "center" }}
                 >
                   <div
                     style={{
@@ -81,7 +81,7 @@ export default function Home() {
                       display: "inline-block"
                     }}
                   >
-                    <Image src={card.imageUrl} alt={card.text} width={100} height={100} />
+                    <Image src={card.imageUrl} alt={card.text} width={50} height={50} />
                   </div>
                   <p style={{ whiteSpace: "normal", wordWrap: "break-word", marginTop: "10px" }}>
                     {card.text}
