@@ -1,7 +1,7 @@
 // app/planner/page.js
 'use client';
 
-import * as React from "react";
+import React, { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import { Grid2 } from "@mui/material";
 import Image from "next/image"; 
@@ -15,11 +15,12 @@ import Box from '@mui/material/Box';
 import { useRouter } from 'next/navigation';
 
 export default function Planner() {
+    const [isChatActive, setIsChatActive] = useState(false);
+    const handleChatSend = () => {
+        setIsChatActive(true); // Activate chat
+    };
     const router = useRouter(); // Initialize router
     
-      const handleSend = () => {
-        router.push('/planner'); // Navigate to /planner
-      };
     const cardsData1 = [
         {
           imageUrl: "/machinelearning.jpeg",
@@ -68,6 +69,8 @@ export default function Planner() {
     
       return (
         <div className="w-full h-full flex pl-5 pr-5 flex-col">
+            {!isChatActive && ( // Render main content if chat is not active
+            <>
           <div className="gradient-text" style={{ fontSize: "3rem", fontWeight: "bold" }}>
             Hi there! <br />
             Ready to learn something new? 🚀 <br />
@@ -197,7 +200,7 @@ export default function Planner() {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton aria-label="send message" edge="end" sx={{ marginRight: '10px' }} onClick={handleSend}>
+                  <IconButton aria-label="send message" edge="end" sx={{ marginRight: '10px' }} onClick={handleChatSend}>
                     <SendIcon />
                   </IconButton>
                 </InputAdornment>
@@ -206,6 +209,41 @@ export default function Planner() {
           />
         </Box>
         </div>
+        </>
+    )}
+    {isChatActive && ( // Render chat interface if chat is active
+      <div>
+        {/* Chat interface components */}
+        <Box
+          sx={{
+            backgroundColor: '#fff',
+            borderRadius: '10px',
+            padding: '10px',
+            margin: '10px 0',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <TextField
+            label="What do you want to learn?"
+            variant="outlined"
+            fullWidth
+            sx={{
+              // ... styles ...
+            }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton aria-label="send message" edge="end" sx={{ marginRight: '10px' }} onClick={handleChatSend}>
+                    <SendIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+      </div>
+    )}
         </div>
       );
 }
