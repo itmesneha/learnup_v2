@@ -23,7 +23,7 @@ export default function Home() {
       text: "Create a 3-D anime with SORA for publishing",
     },
     {
-      imageUrl: "/communication.jpg",
+      imageUrl: "/comm.jpg",
       text: "Improve your communication skills",
     },
     {
