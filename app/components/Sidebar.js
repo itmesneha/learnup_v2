@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -16,6 +17,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
 import { Fugaz_One } from 'next/font/google';
 import Grid2 from '@mui/material/Grid2'
+import { useRouter, usePathname } from 'next/navigation';
 
 const fugazOne = Fugaz_One({ 
     subsets: ['latin'], 
@@ -23,8 +25,14 @@ const fugazOne = Fugaz_One({
   });
 
 export default function Sidebar() {
+    const router = useRouter();
+    const pathname = usePathname();
+  
+    const handlePlannerClick = () => {
+      router.push('/planner');
+    };
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation">
+    <Box sx={{ width: 300 }} role="presentation">
       <Divider />
       <List>
         <ListItem> 
@@ -76,13 +84,59 @@ export default function Sidebar() {
       <hr />
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
+          <ListItemButton onClick={handlePlannerClick}
+            sx={{
+              ...(pathname === '/planner' && { // Conditionally apply styles
+                backgroundColor: 'rgba(8, 94, 181, 0.08)', 
+                color: 'rgb(8, 94, 181)',
+              }),
+            }}>
+            <ListItemIcon sx={{
+              ...(pathname === '/planner' && { // Conditionally apply styles
+                color: 'rgb(8, 94, 181)',
+              }),
+            }}>
               <SpeakerNotesIcon />
             </ListItemIcon>
             Planner
           </ListItemButton>
         </ListItem>
+        <ListItem>
+          <span className = 'text-slate-400 '>Today</span>
+        </ListItem>
+        <ListItem>
+          <span className = 'text-slate-700 '>How do I learn python in 2 months...</span>
+        </ListItem>
+        <ListItem>
+          <span className = 'text-slate-700 '>What should I learn in order to get...</span>
+        </ListItem>
+        <hr className='p-2'/>
+        <ListItem>
+          <span className = 'text-slate-400'>7 days</span>
+        </ListItem>
+        <ListItem>
+          <span className = 'text-slate-700 '>How should I learn to understand...</span>
+        </ListItem>
+        <ListItem>
+          <span className = 'text-slate-700 '>Becoming a first time dog parent...</span>
+        </ListItem>
+        <ListItem>
+          <span className = 'text-slate-700 '>Learning to bake a cute cake 101...</span>
+        </ListItem>
+        <hr className='p-2'/>
+        <ListItem>
+          <span className = 'text-slate-400'>30 days</span>
+        </ListItem>
+        <ListItem>
+          <span className = 'text-slate-700 '>Finance guide for 20 somethings...</span>
+        </ListItem>
+        <ListItem>
+          <span className = 'text-slate-700 '>Market analysis sales supermarket...</span>
+        </ListItem>
+        <ListItem>
+          <span className = 'text-slate-700 '>String Theory guide for dummies...</span>
+        </ListItem>
+        <hr className='p-5' sx={{ borderColor: 'red' }}/>
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>

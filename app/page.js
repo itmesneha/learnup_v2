@@ -6,9 +6,21 @@ import { Grid2 } from "@mui/material";
 import Image from "next/image"; 
 import Button from '@mui/material/Button';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import SendIcon from '@mui/icons-material/Send';
+import Box from '@mui/material/Box';
+import { useRouter } from 'next/navigation';
 // import { transform } from "next/dist/build/swc/generated-native";
 
 export default function Home() {
+  const router = useRouter(); // Initialize router
+
+  const handleSend = () => {
+    router.push('/planner'); // Navigate to /planner
+  };
+
   const cardsData1 = [
     {
       imageUrl: "/machinelearning.jpeg",
@@ -56,7 +68,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="w-full h-full flex p-10 flex-col">
+    <div className="w-full h-full flex pl-5 pr-5 flex-col">
       <div className="gradient-text" style={{ fontSize: "3rem", fontWeight: "bold" }}>
         Hi there! <br />
         Ready to learn something new? 🚀 <br />
@@ -154,6 +166,47 @@ export default function Home() {
           </Grid2>
         </Paper>
       </div>
+      <div>
+      <Box
+      sx={{
+        backgroundColor: '#fff',
+        borderRadius: '10px',
+        padding: '10px',
+        margin: '10px 0',
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
+      <TextField
+        label="What do you want to learn?"
+        variant = 'outlined' 
+        fullWidth
+        sx={{
+          backgroundColor: '#f5f5f5',
+          border: '1px solid #ccc',
+          padding: '10px',
+          borderRadius: '10px',
+          '& .MuiOutlinedInput-notchedOutline': { // target the outline
+            border: 'none', // remove outline
+          },
+          '&:focus-within': { // target the focus state
+            '& .MuiOutlinedInput-notchedOutline': {
+              border: 'none', // remove outline on focus
+            }
+          },
+        }}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton aria-label="send message" edge="end" sx={{ marginRight: '10px' }} onClick={handleSend}>
+                <SendIcon />
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
+      />
+    </Box>
+    </div>
     </div>
   );
 }

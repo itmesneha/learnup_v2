@@ -10,11 +10,9 @@ export default function RootLayout({ children }) {
       <body>
         <Grid container className="h-screen">
           {/* Sidebar with fixed width */}
-          <Grid item sx={{ width: 250, flexShrink: 0 }}>
+          <Grid item sx={{ width: 300, flexShrink: 0 }}>
             <Sidebar />
           </Grid>
-          
-          {/* Main content should take the remaining space */}
           <Grid item sx={{ flexGrow: 1, backgroundColor: "#f5f5f5", display: "flex" }}>
             {children}
           </Grid>
