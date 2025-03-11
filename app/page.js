@@ -9,7 +9,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 // import { transform } from "next/dist/build/swc/generated-native";
 
 export default function Home() {
-  const cardsData = [
+  const cardsData1 = [
     {
       imageUrl: "/machinelearning.jpeg",
       text: "Get started with Machine Learning",
@@ -32,6 +32,29 @@ export default function Home() {
     },
   ];
 
+  const cardsData2 = [
+    {
+      imageUrl: "/machinelearning.jpeg",
+      text: "Golden Retriever Training",
+    },
+    {
+      imageUrl: "/sora.jpg",
+      text: "Household Investment Strategies",
+    },
+    {
+      imageUrl: "/figma.jpeg",
+      text: "Amazon Store Management",
+    },
+    {
+      imageUrl: "/communication.jpg",
+      text: "Become a Hip-Hop Dancer",
+    },
+    {
+      imageUrl: "/acca.png",
+      text: "Writing your first Sci-Fi Novel",
+    },
+  ];
+
   return (
     <div className="w-full h-full flex p-10 flex-col">
       <div className="gradient-text pb-10" style={{ fontSize: "3rem", fontWeight: "bold" }}>
@@ -43,7 +66,53 @@ export default function Home() {
         You might be interested in:<br />
         <Paper className="p-4" elevation={0} style={{ display: "flex", flexWrap: "wrap" }}>
           <Grid2 container spacing={2} justifyContent="flex-start">
-            {cardsData.map((card, index) => (
+            {cardsData1.map((card, index) => (
+              <Grid2 item key={index}>
+                <Paper
+                  className="p-4 flex flex-col items-center justify-between" // Added justify-between
+                  elevation={3}
+                  style={{ width: "250px", height: "250px", textAlign: "center" }}
+                >
+                  <div
+                    style={{
+                      border: "2px solid #ccc",
+                      borderRadius: "8px",
+                      padding: "5px",
+                      display: "inline-block"
+                    }}
+                  >
+                    <Image src={card.imageUrl} alt={card.text} width={100} height={100} />
+                  </div>
+                  <p style={{ whiteSpace: "normal", wordWrap: "break-word", marginTop: "10px" }}>
+                    {card.text}
+                  </p>
+                </Paper>
+              </Grid2>
+            ))}
+            <Grid2 sx = {{pt: 10, pl: 1}} justifyContent="flex-start">
+            <Button 
+                endIcon={<ArrowForwardIcon />}
+                variant="contained" 
+                sx={{ 
+                  background: 'linear-gradient(to left,rgb(112, 126, 221),rgb(52, 94, 231))', 
+                  '&:hover': {
+                    background: 'linear-gradient(to left, #98a1f7, #574dc4)',
+                  },
+                  width: '100%', 
+                  textTransform:'none', 
+                }}
+              >
+                See more
+            </Button>
+            </Grid2>
+          </Grid2>
+        </Paper>
+      </div>
+      <div className="text-slate-500 font-bold">
+        People are learning:<br />
+        <Paper className="p-4" elevation={0} style={{ display: "flex", flexWrap: "wrap" }}>
+          <Grid2 container spacing={2} justifyContent="flex-start">
+            {cardsData2.map((card, index) => (
               <Grid2 item key={index}>
                 <Paper
                   className="p-4 flex flex-col items-center justify-between" // Added justify-between
