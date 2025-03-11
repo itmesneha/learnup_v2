@@ -34,44 +34,44 @@ export default function Home() {
 
   const cardsData2 = [
     {
-      imageUrl: "/machinelearning.jpeg",
-      text: "Golden Retriever Training",
+      imageUrl: "/dog.jpg",
+      text: "Golden Retriever Training 101",
     },
     {
-      imageUrl: "/sora.jpg",
+      imageUrl: "/coins.jpg",
       text: "Household Investment Strategies",
     },
     {
-      imageUrl: "/figma.jpeg",
-      text: "Amazon Store Management",
+      imageUrl: "/amazon.png",
+      text: "Amazon Store Management for Business Owners",
     },
     {
-      imageUrl: "/communication.jpg",
-      text: "Become a Hip-Hop Dancer",
+      imageUrl: "/hiphop.jpeg",
+      text: "Become a Hip-Hop Dancer in 30 days",
     },
     {
-      imageUrl: "/acca.png",
+      imageUrl: "/scifi.jpeg",
       text: "Writing your first Sci-Fi Novel",
     },
   ];
 
   return (
     <div className="w-full h-full flex p-10 flex-col">
-      <div className="gradient-text pb-10" style={{ fontSize: "3rem", fontWeight: "bold" }}>
+      <div className="gradient-text" style={{ fontSize: "3rem", fontWeight: "bold" }}>
         Hi there! <br />
         Ready to learn something new? 🚀 <br />
-        What would you like to explore today? <br />
+        What would you like to explore today? 
       </div>
-      <div className="text-slate-500 font-bold">
-        You might be interested in:<br />
-        <Paper className="p-4" elevation={0} style={{ display: "flex", flexWrap: "wrap" }}>
+      <div className="text-slate-500 font-bold pt-5">
+        You might be interested in:
+        <Paper className="p-4 pt-5" elevation={0} style={{ display: "flex", flexWrap: "wrap" }}>
           <Grid2 container spacing={2} justifyContent="flex-start">
             {cardsData1.map((card, index) => (
               <Grid2 item key={index}>
                 <Paper
-                  className="p-4 flex flex-col items-center justify-between" // Added justify-between
+                  className="p-4 flex flex-col items-center justify-between" 
                   elevation={3}
-                  style={{ width: "150px", height: "150px", textAlign: "center" }}
+                  style={{ width: "250px", height: "200px", textAlign: "center" }}
                 >
                   <div
                     style={{
@@ -81,9 +81,9 @@ export default function Home() {
                       display: "inline-block"
                     }}
                   >
-                    <Image src={card.imageUrl} alt={card.text} width={50} height={50} />
+                    <Image src={card.imageUrl} alt={card.text} width={100} height={100} />
                   </div>
-                  <p style={{ whiteSpace: "normal", wordWrap: "break-word", marginTop: "10px" }}>
+                  <p className = "font-normal " style={{ wordWrap: "break-word" }}>
                     {card.text}
                   </p>
                 </Paper>
@@ -108,16 +108,16 @@ export default function Home() {
           </Grid2>
         </Paper>
       </div>
-      <div className="text-slate-500 font-bold">
-        People are learning:<br />
-        <Paper className="p-4" elevation={0} style={{ display: "flex", flexWrap: "wrap" }}>
+      <div className="text-slate-500 font-bold pt-5">
+        People are learning:
+        <Paper className="p-4 pt-5" elevation={0} style={{ display: "flex", flexWrap: "wrap" }}>
           <Grid2 container spacing={2} justifyContent="flex-start">
             {cardsData2.map((card, index) => (
               <Grid2 item key={index}>
                 <Paper
-                  className="p-4 flex flex-col items-center justify-between" // Added justify-between
+                  className="p-4 flex flex-col items-center justify-between" 
                   elevation={3}
-                  style={{ width: "250px", height: "250px", textAlign: "center" }}
+                  style={{ width: "250px", height: "200px", textAlign: "center" }}
                 >
                   <div
                     style={{
@@ -129,7 +129,7 @@ export default function Home() {
                   >
                     <Image src={card.imageUrl} alt={card.text} width={100} height={100} />
                   </div>
-                  <p style={{ whiteSpace: "normal", wordWrap: "break-word", marginTop: "10px" }}>
+                  <p className = "font-normal " style={{ wordWrap: "break-word" }}>
                     {card.text}
                   </p>
                 </Paper>
