@@ -15,7 +15,7 @@ import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
 import { Fugaz_One } from 'next/font/google';
-import Grid from '@mui/material/Grid'
+import Grid2 from '@mui/material/Grid2'
 
 const fugazOne = Fugaz_One({ 
     subsets: ['latin'], 
@@ -40,8 +40,8 @@ export default function Sidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem>
-        <Grid container spacing={2}> {/* Wrap buttons in Grid container */}
-            <Grid item xs={9}> {/* New Plan button occupies 80% */}
+        <Grid2 container spacing={2}> {/* Wrap buttons in Grid2 container */}
+            <Grid2 item xs={9}> {/* New Plan button occupies 80% */}
               <Button 
                 variant="contained" 
                 startIcon={<AddIcon />}
@@ -55,8 +55,8 @@ export default function Sidebar() {
               >
                 New Plan
               </Button>
-            </Grid>
-            <Grid item xs={3}> 
+            </Grid2>
+            <Grid2 item xs={3}> 
               <IconButton 
                 aria-label="search"
                 sx={{ 
@@ -69,8 +69,8 @@ export default function Sidebar() {
               >
                 <SearchIcon />
               </IconButton>
-            </Grid>
-          </Grid>
+            </Grid2>
+          </Grid2>
         </ListItem>
       </List>
       <hr />
