@@ -2,24 +2,18 @@
 'use client';
 
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-  ...theme.applyStyles("dark", {
-    backgroundColor: "#1A2027",
-  }),
-}));
 
 export default function Home() {
   return (
     <div>
-      <Item></Item>
+      <div className="w-full h-full flex p-30 gradient-text" style={{ fontSize: '3rem', fontWeight: 'bold' }}>
+          Hi there! <br />
+          Ready to learn something new? 🚀 <br />
+          What would you like to explore today?
+      </div>
+      <div>
+        You might be interested in
+      </div>
     </div>
   );
 }

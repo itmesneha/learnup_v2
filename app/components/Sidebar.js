@@ -6,7 +6,6 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import SpeakerNotesIcon from '@mui/icons-material/SpeakerNotes';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -14,50 +13,64 @@ import LanguageIcon from '@mui/icons-material/Language';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
-import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
+import { Fugaz_One } from 'next/font/google';
+import Grid from '@mui/material/Grid'
+
+const fugazOne = Fugaz_One({ 
+    subsets: ['latin'], 
+    weight: ['400'], // You can specify other weights if needed
+  });
 
 export default function Sidebar() {
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation">
       <Divider />
       <List>
-        <ListItem disablePadding> 
-          <ListItemButton>
-            <ListItemIcon>
-              <LightbulbIcon />
-            </ListItemIcon>
+        <ListItem> 
+          <ListItemButton
+           sx={{ // Apply custom styles to ListItemButton
+            padding: '1rem', // Add padding
+            typography: 'h4', // Use h5 typography for larger font size
+            fontFamily: fugazOne.style.fontFamily, // Replace with your desired font
+          }}
+          className="gradient-text"
+          >
             LearnUp 
           </ListItemButton>
         </ListItem>
         <ListItem>
-        <Stack direction="row" spacing={2}>
-            <Button 
+        <Grid container spacing={2}> {/* Wrap buttons in Grid container */}
+            <Grid item xs={9}> {/* New Plan button occupies 80% */}
+              <Button 
                 variant="contained" 
                 startIcon={<AddIcon />}
                 sx={{ 
-                    background: 'linear-gradient(to left,rgb(112, 126, 221),rgb(52, 94, 231))', 
-                    '&:hover': { // Hover effect
-                    background: 'linear-gradient(to left, #98a1f7, #574dc4)', // Reverse gradient on hover
-                    },
-                    // textTransform: 'none',
+                  background: 'linear-gradient(to left,rgb(112, 126, 221),rgb(52, 94, 231))', 
+                  '&:hover': {
+                    background: 'linear-gradient(to left, #98a1f7, #574dc4)',
+                  },
+                  width: '100%', 
                 }}
-                >
+              >
                 New Plan
-            </Button>
-            <IconButton aria-label="search"
+              </Button>
+            </Grid>
+            <Grid item xs={3}> 
+              <IconButton 
+                aria-label="search"
                 sx={{ 
-                    background: 'rgb(112, 126, 221)', 
-                    color: 'white',
-                    '&:hover': { // Hover effect
-                    background: 'linear-gradient(to left, #98a1f7, #574dc4)', // Reverse gradient on hover
-                    },
-                    // textTransform: 'none',
+                  background: 'rgb(112, 126, 221)', 
+                  color: 'white',
+                  '&:hover': {
+                    background: 'linear-gradient(to left, #98a1f7, #574dc4)',
+                  },
                 }}
-            >
+              >
                 <SearchIcon />
-            </IconButton>
-        </Stack>
+              </IconButton>
+            </Grid>
+          </Grid>
         </ListItem>
       </List>
       <hr />
