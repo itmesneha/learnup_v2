@@ -35,7 +35,7 @@ export default function Home() {
   const cardsData2 = [
     {
       imageUrl: "/dog.jpg",
-      text: "Golden Retriever Training 101",
+      text: "Golden Retriever Training For Hopeful pet owners 101",
     },
     {
       imageUrl: "/coins.jpg",
@@ -51,7 +51,7 @@ export default function Home() {
     },
     {
       imageUrl: "/scifi.jpeg",
-      text: "Writing your first Sci-Fi Novel",
+      text: "Writing your first Sci-Fi Novel: A guide for Dummies",
     },
   ];
 
