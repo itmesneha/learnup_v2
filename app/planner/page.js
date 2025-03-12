@@ -13,11 +13,57 @@ import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
 import { useRouter } from 'next/navigation';
+import { db, collection, query, where, getDocs } from "../../firebase";
 
 export default function Planner() {
     const [isChatActive, setIsChatActive] = useState(false);
-    const handleChatSend = () => {
+    const [searchQuery, setSearchQuery] = useState(""); // Store user input
+    const [searchResults, setSearchResults] = useState([]); // Store search results
+
+    const handleChatSend = async () => {
         setIsChatActive(true); // Activate chat
+        // If we already have results, return the first one and remove it
+
+        if (searchResults.length > 0) {
+          const nextQuestion = searchResults[0]; // Get first question
+          setSearchResults(searchResults.slice(1)); // Remove first question
+          console.log("Next question:", nextQuestion);
+          return;
+        }
+        if (!searchQuery.trim()) return; // Don't search if input is empty    
+        try {
+            // Step 1: Query Firestore for the entered topic
+            const querySnapshot = await getDocs(collection(db, "chat_prompts"));
+            const results = [];
+    
+            querySnapshot.forEach((doc) => {
+              const data = doc.data();
+              
+              // Step 2: Check if queryText is contained within the topic string
+              if (data.topic.toLowerCase().includes(searchQuery.toLowerCase())) {
+                  for (let i = 1; i <= 5; i++) {
+                      if (data[`q${i}`]) {
+                          results.push(data[`q${i}`]); // Store all questions
+                      }
+                  }
+              }
+            });
+    
+            if (results.length === 0) {
+                results.push("No related questions found.");
+            }
+    
+            setSearchResults(results); // Store fetched questions
+    
+            // Immediately return the first question
+            if (results.length > 0) {
+                const nextQuestion = results[0];
+                setSearchResults(results.slice(1)); // Remove first question
+                console.log("Next question:", nextQuestion);
+            }
+        } catch (error) {
+            console.error("Error searching Firestore:", error);
+        }
     };
     const router = useRouter(); // Initialize router
     
@@ -197,10 +243,14 @@ export default function Planner() {
                 }
               },
             }}
+            onChange={(e) => {
+              console.log("User input:", e.target.value); // Debugging
+              setSearchQuery(e.target.value); // Update state
+            }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton aria-label="send message" edge="end" sx={{ marginRight: '10px' }} onClick={handleChatSend}>
+                  <IconButton aria-label="send message" edge="end" sx={{ marginRight: '10px' }} onClick={handleChatSend(searchQuery)}>
                     <SendIcon />
                   </IconButton>
                 </InputAdornment>
@@ -230,6 +280,10 @@ export default function Planner() {
             fullWidth
             sx={{
               // ... styles ...
+            }}
+            onChange={(e) => {
+              console.log("User input:", e.target.value); // Debugging
+              setSearchQuery(e.target.value); // Update state
             }}
             InputProps={{
               endAdornment: (
