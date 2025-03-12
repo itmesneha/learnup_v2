@@ -1,6 +1,6 @@
 
 const { initializeApp } = require("firebase/app");
-const { getFirestore, collection, query, where, getDocs, addDoc } =  require("firebase/firestore");
+const { getFirestore, collection, query, where, getDocs, addDoc, setDoc } =  require("firebase/firestore");
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,4 +20,4 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-module.exports = { db, collection, query, where, getDocs, addDoc };
+module.exports = { db, collection, query, where, getDocs, addDoc, setDoc };
