@@ -13,7 +13,7 @@ export default function Planner() {
     const router = useRouter();
 
     return (
-        <div className="w-full h-full flex pl-5 pr-5 flex-col">
+        <div className="flex flex-col">
             {!isChatActive && (
                 <>
                     <IntroBanner />

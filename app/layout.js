@@ -2,21 +2,20 @@
 
 import "./globals.css";
 import Sidebar from "./components/Sidebar";
-import Grid from '@mui/material/Grid2'; 
+import Grid2 from '@mui/material/Grid2'; 
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Grid container className="h-screen">
-          {/* Sidebar with fixed width */}
-          <Grid item sx={{ width: 300, flexShrink: 0 }}>
+        <Grid2 container spacing={2} className="h-screen">
+          <Grid2 size = {4}>
             <Sidebar />
-          </Grid>
-          <Grid item sx={{ flexGrow: 1, backgroundColor: "#f5f5f5", display: "flex" }}>
+          </Grid2>
+          <Grid2 size = {8}>
             {children}
-          </Grid>
-        </Grid>
+          </Grid2>
+        </Grid2>
       </body>
     </html>
   );

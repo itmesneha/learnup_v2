@@ -45,7 +45,7 @@ export default function Sidebar() {
     }
 
   const DrawerList = (
-    <Box sx={{ width: 300 }} role="presentation">
+    <Box  role="presentation">
       <Divider />
       <List>
         <ListItem> 
