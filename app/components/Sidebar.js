@@ -31,6 +31,19 @@ export default function Sidebar() {
     const handlePlannerClick = () => {
       router.push('/planner');
     };
+
+    const handleCollectionsClick = () => {
+      router.push('/collections');
+    }
+
+    const handleTrackCLick = () => {
+      router.push('/track');
+    }
+
+    const handleDiscoverClick = () => {
+      router.push('/discover');
+    }
+
   const DrawerList = (
     <Box sx={{ width: 300 }} role="presentation">
       <Divider />
@@ -138,7 +151,13 @@ export default function Sidebar() {
         </ListItem>
         <hr className='p-5' sx={{ borderColor: 'red' }}/>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={handleCollectionsClick}
+            sx={{
+              ...(pathname === '/collections' && { // Conditionally apply styles
+                backgroundColor: 'rgba(8, 94, 181, 0.08)', 
+                color: 'rgb(8, 94, 181)',
+              }),
+            }}>
             <ListItemIcon>
               <BookmarkBorderIcon />
             </ListItemIcon>
@@ -146,7 +165,7 @@ export default function Sidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={handleTrackCLick}>
             <ListItemIcon>
               <CalendarMonthIcon />
             </ListItemIcon>
@@ -154,7 +173,7 @@ export default function Sidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={handleDiscoverClick}>
             <ListItemIcon>
               <LanguageIcon />
             </ListItemIcon>
