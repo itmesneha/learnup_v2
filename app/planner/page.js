@@ -16,27 +16,21 @@ export default function Planner() {
     return (
         <div className="flex flex-col pr-5 pb-5">
             <Grid2 container spacing = {2}>
+                {!isChatActive && (
                 <Grid2 size = {12}>
                     <IntroBanner />
                     <InterestedIn />
                     <PeopleLearning />
                 </Grid2>
+                )}
+                {/* {isChatActive && ( */}
                 <Grid2 size = {12}>
-                    {!isChatActive && (
-                    <>
                         <div>
                             <ChatBox isChatActive={isChatActive} setIsChatActive={setIsChatActive} /> 
                         </div>
-                    </>
-                    )}
-                    {isChatActive && (
-                        <div>
-                            <ChatBox isChatActive={isChatActive} setIsChatActive={setIsChatActive} /> 
-                        </div>
-                    )}
                 </Grid2>
+                {/* )} */}
             </Grid2>
-           
         </div>
     );
 }
