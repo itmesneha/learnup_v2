@@ -61,8 +61,8 @@ export default function Sidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem>
-        <Grid2 container spacing={2}> {/* Wrap buttons in Grid2 container */}
-            <Grid2 item xs={3}> {/* New Plan button occupies 80% */}
+        <Grid2 container spacing={2}> 
+            <Grid2 item xs={3}> 
               <Button 
                 variant="contained" 
                 startIcon={<AddIcon />}

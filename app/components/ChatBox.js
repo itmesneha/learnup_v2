@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 import InputAdornment from '@mui/material/InputAdornment';
 import Box from '@mui/material/Box';
 import { db, collection, query, where, getDocs, addDoc } from '../../firebase.js';
+import { Button } from '@mui/material';
 
 export default function ChatBox({ isChatActive, setIsChatActive }) {
     const [userInput, setUserInput] = useState('');
@@ -57,11 +59,15 @@ export default function ChatBox({ isChatActive, setIsChatActive }) {
                 margin: '10px 0',
                 display: 'flex',
                 flexDirection: 'column', // Arrange children vertically
-                height: '100vh', // Take full viewport height
+                // height: '100vh', // Take full viewport height
                 justifyContent: 'space-between', // Push textbox to bottom
             }}
         >
+            {/* <Button variant="outlined" startIcon={<ArrowBack />}>
+                  Back
+            </Button> */}
             <div className="flex flex-col" style={{ overflowY: 'auto', flex: 1 }}> {/* Add scrollable container */}
+                
                 {chatMessages.map((message, index) => (
                     <Box
                         key={index}
@@ -70,7 +76,7 @@ export default function ChatBox({ isChatActive, setIsChatActive }) {
                             padding: '10px',
                             margin: '5px 0',
                             borderRadius: '10px',
-                            backgroundColor: message.sender === 'user' ? '#DCF8C6' : '#E5E5EA',
+                            backgroundColor: message.sender === 'user' ? '#cdcaee' : '#E5E5EA',
                             alignSelf: message.sender === 'user' ? 'flex-end' : 'flex-start',
                             textAlign: 'left',
                             wordWrap: 'break-word',
