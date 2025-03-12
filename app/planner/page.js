@@ -7,6 +7,7 @@ import InterestedIn from '../components/InterestedIn';
 import PeopleLearning from '../components/PeopleLearning';
 import ChatBox from '../components/ChatBox';
 import Grid2 from '@mui/material/Grid2'; 
+import BottomNavigation from '@mui/material/BottomNavigation';
 
 export default function Planner() {
     const [isChatActive, setIsChatActive] = useState(false);
@@ -25,9 +26,7 @@ export default function Planner() {
                 )}
                 {/* {isChatActive && ( */}
                 <Grid2 size = {12}>
-                        <div>
-                            <ChatBox isChatActive={isChatActive} setIsChatActive={setIsChatActive} /> 
-                        </div>
+                    <ChatBox sx = {{ position: 'sticky', bottom: 0, width: '100%' }} isChatActive={isChatActive} setIsChatActive={setIsChatActive} />
                 </Grid2>
                 {/* )} */}
             </Grid2>
