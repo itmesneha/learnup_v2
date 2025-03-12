@@ -6,7 +6,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Box from '@mui/material/Box';
 import { db, collection, query, where, getDocs, addDoc } from '../../firebase.js';
 
-export default function ChatBox({ isChatActive, setIsChatActive }) { // Receive props
+export default function ChatBox({ isChatActive, setIsChatActive }) {
     const [userInput, setUserInput] = useState('');
     const [chatMessages, setChatMessages] = useState([]);
 
@@ -15,7 +15,7 @@ export default function ChatBox({ isChatActive, setIsChatActive }) { // Receive 
     };
 
     const fetchResponse = async (input) => {
-        const responsesCollection = collection(db, 'chatResponses');
+        const responsesCollection = collection(db, 'chat_prompts');
         const q = query(responsesCollection, where('userInput', '==', input));
         const querySnapshot = await getDocs(q);
 
@@ -28,7 +28,7 @@ export default function ChatBox({ isChatActive, setIsChatActive }) { // Receive 
     };
 
     const handleChatSend = async () => {
-        setIsChatActive(true); // Update state via prop setter
+        setIsChatActive(true);
         const response = await fetchResponse(userInput);
 
         setChatMessages((prevMessages) => [
@@ -40,6 +40,14 @@ export default function ChatBox({ isChatActive, setIsChatActive }) { // Receive 
         setUserInput('');
     };
 
+    const handleKeyDown = async (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            await handleChatSend();
+        }
+    };
+
+
     return (
         <Box
             sx={{
@@ -48,29 +56,30 @@ export default function ChatBox({ isChatActive, setIsChatActive }) { // Receive 
                 padding: '10px',
                 margin: '10px 0',
                 display: 'flex',
-                alignItems: 'center',
+                flexDirection: 'column', // Arrange children vertically
+                height: '100vh', // Take full viewport height
+                justifyContent: 'space-between', // Push textbox to bottom
             }}
         >
-          <div className = 'flex flex-col'>
-            {chatMessages.map((message, index) => (
-              <Box
-                  key={index}
-                  sx={{
-                      maxWidth: '70%', // Limit message box width
-                      padding: '10px',
-                      margin: '5px 0',
-                      borderRadius: '10px',
-                      backgroundColor: message.sender === 'user' ? '#DCF8C6' : '#E5E5EA', // Different background colors
-                      alignSelf: message.sender === 'user' ? 'flex-end' : 'flex-start', // Align left or right
-                      textAlign: 'left', // Ensure text is left-aligned within the box
-                      wordWrap: 'break-word', // Handle long words
-                  }}
-              >
-                  {message.text}
-              </Box>
-          ))}
-          </div> 
-          <div>
+            <div className="flex flex-col" style={{ overflowY: 'auto', flex: 1 }}> {/* Add scrollable container */}
+                {chatMessages.map((message, index) => (
+                    <Box
+                        key={index}
+                        sx={{
+                            maxWidth: '70%',
+                            padding: '10px',
+                            margin: '5px 0',
+                            borderRadius: '10px',
+                            backgroundColor: message.sender === 'user' ? '#DCF8C6' : '#E5E5EA',
+                            alignSelf: message.sender === 'user' ? 'flex-end' : 'flex-start',
+                            textAlign: 'left',
+                            wordWrap: 'break-word',
+                        }}
+                    >
+                        {message.text}
+                    </Box>
+                ))}
+            </div>
             <TextField
                 label="What do you want to learn?"
                 variant="outlined"
@@ -91,6 +100,7 @@ export default function ChatBox({ isChatActive, setIsChatActive }) { // Receive 
                 }}
                 value={userInput}
                 onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
@@ -101,7 +111,6 @@ export default function ChatBox({ isChatActive, setIsChatActive }) { // Receive 
                     ),
                 }}
             />
-            </div>
         </Box>
     );
 }
