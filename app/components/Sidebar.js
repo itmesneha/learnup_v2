@@ -62,7 +62,7 @@ export default function Sidebar() {
         </ListItem>
         <ListItem>
         <Grid2 container spacing={2}> {/* Wrap buttons in Grid2 container */}
-            <Grid2 item xs={9}> {/* New Plan button occupies 80% */}
+            <Grid2 item xs={3}> {/* New Plan button occupies 80% */}
               <Button 
                 variant="contained" 
                 startIcon={<AddIcon />}
@@ -77,7 +77,7 @@ export default function Sidebar() {
                 New Plan
               </Button>
             </Grid2>
-            <Grid2 item xs={3}> 
+            <Grid2 item xs={1}> 
               <IconButton 
                 aria-label="search"
                 sx={{ 

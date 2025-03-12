@@ -9,10 +9,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Grid2 container spacing={2} className="h-screen">
-          <Grid2 size = {4}>
+          <Grid2 size = {2}>
             <Sidebar />
           </Grid2>
-          <Grid2 size = {8}>
+          <Grid2 size = {10}>
             {children}
           </Grid2>
         </Grid2>
