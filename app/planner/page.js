@@ -1,9 +1,6 @@
-// app/planner/page.js
 'use client';
 
 import React, { useState } from 'react';
-
-
 import { useRouter } from 'next/navigation';
 import IntroBanner from '../components/IntroBanner';
 import InterestedIn from '../components/InterestedIn';
@@ -12,26 +9,26 @@ import ChatBox from '../components/ChatBox';
 
 export default function Planner() {
     const [isChatActive, setIsChatActive] = useState(false);
-    
-    const router = useRouter(); // Initialize router
-    
-      return (
+
+    const router = useRouter();
+
+    return (
         <div className="w-full h-full flex pl-5 pr-5 flex-col">
-            {!isChatActive && ( // Render main content if chat is not active
-            <>
-                <IntroBanner />
-                <InterestedIn />
-                <PeopleLearning />
-          <div>
-          <ChatBox />
+            {!isChatActive && (
+                <>
+                    <IntroBanner />
+                    <InterestedIn />
+                    <PeopleLearning />
+                    <div>
+                        <ChatBox isChatActive={isChatActive} setIsChatActive={setIsChatActive} /> {/* Pass state and setter */}
+                    </div>
+                </>
+            )}
+            {isChatActive && (
+                <div>
+                    <ChatBox isChatActive={isChatActive} setIsChatActive={setIsChatActive} /> {/* Pass state and setter */}
+                </div>
+            )}
         </div>
-        </>
-    )}
-    {isChatActive && ( // Render chat interface if chat is active
-      <div>
-        <ChatBox />
-      </div>
-    )}
-        </div>
-      );
+    );
 }
