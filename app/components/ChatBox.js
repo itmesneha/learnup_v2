@@ -137,22 +137,14 @@ export default function ChatBox({ isChatActive, setIsChatActive }) {
                 borderRadius: '10px',
                 padding: '10px',
                 margin: '10px 0',
-                display: 'flex',
-                flexDirection: 'column', // Arrange children vertically
-                // height: '100vh', // Take full viewport height
-                justifyContent: 'space-between', // Push textbox to bottom
             }}
         >
-            {/* <Button variant="outlined" startIcon={<ArrowBack />}>
-                  Back
-            </Button> */}
-            <div className="flex flex-col" style={{ overflowY: 'auto', flex: 1 }}> {/* Add scrollable container */}
-                
+            <div className="flex flex-col" style={{ overflowY: 'auto', flex: 1 }}> 
                 {chatMessages.map((message, index) => (
                     <Box
                         key={index}
                         sx={{
-                            maxWidth: '70%',
+                            // maxWidth: '70%',
                             padding: '10px',
                             margin: '5px 0',
                             borderRadius: '10px',
@@ -166,6 +158,15 @@ export default function ChatBox({ isChatActive, setIsChatActive }) {
                     </Box>
                 ))}
             </div>
+            <Box sx={{
+              position: 'sticky',
+              bottom: 0,
+              width: '100%',
+              padding: '10px',
+              zIndex: 10,
+              // boxShadow: '0px -2px 10px rgba(0,0,0,0.1)' // Optional: adds a subtle shadow
+            }}>
+              
             <TextField
                 label="What do you want to learn?"
                 variant="outlined"
@@ -197,6 +198,7 @@ export default function ChatBox({ isChatActive, setIsChatActive }) {
                     ),
                 }}
             />
+            </Box>
         </Box>
     );
 }
